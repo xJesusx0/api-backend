@@ -24,6 +24,7 @@ public class VentanaFormulario extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         lblValorI = new javax.swing.JLabel();
         lblValorJ = new javax.swing.JLabel();
+        btnMostrarResultados = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
 
@@ -83,6 +84,9 @@ public class VentanaFormulario extends javax.swing.JFrame {
                 .addContainerGap(10, Short.MAX_VALUE))
         );
 
+        btnMostrarResultados.setText("Mostrar resultadoss");
+        btnMostrarResultados.setEnabled(false);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -95,13 +99,16 @@ public class VentanaFormulario extends javax.swing.JFrame {
                         .addGap(39, 39, 39)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(lblEstado, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
-                            .addComponent(txtEntrada)))
+                            .addComponent(txtEntrada))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(75, 75, 75)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btnAgregar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnCalcular, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(btnCalcular, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnMostrarResultados, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(19, 19, 19))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -114,7 +121,9 @@ public class VentanaFormulario extends javax.swing.JFrame {
                         .addGap(14, 14, 14)
                         .addComponent(txtEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnMostrarResultados))
                         .addGap(18, 18, 18)
                         .addComponent(btnCalcular)))
                 .addContainerGap(37, Short.MAX_VALUE))
@@ -162,34 +171,40 @@ public class VentanaFormulario extends javax.swing.JFrame {
 
     int i = 0;
     int j = 0;
-    
+    int cont = 0;
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        if(convertirDouble(txtEntrada.getText()) != -1){
-            if((i < cantidadMeses)){
-                
 
-                ventas[i][j] = Double.parseDouble(txtEntrada.getText());
-                j++;
-                if(j == cantidadTiendas){
-                    i++;
-                    j = 0;
-                }
-                txtEntrada.setText("");
-                lblValorI.setText("I = " + i);
-                lblValorJ.setText("J = " + j);
+            if(convertirDouble(txtEntrada.getText()) != -1){
+                if((i < cantidadMeses)){               
+                    ventas[i][j] = Double.parseDouble(txtEntrada.getText());
+                    j++;
+                    if(j == cantidadTiendas){
+                        i++;
+                        j = 0;
+                    }
+                    txtEntrada.setText("");
+                    lblValorI.setText("I = " + i);
+                    lblValorJ.setText("J = " + j);
+                    cont++;
+                    if(cont == (cantidadMeses * cantidadTiendas)){
+                        JOptionPane.showMessageDialog(null, "Matriz rellenada");
+                        btnAgregar.setEnabled(false);
+                        btnCalcular.setEnabled(true);
+                    }
+                }    
             } else {
-                JOptionPane.showMessageDialog(null, "Matriz rellenada");
-                btnAgregar.setEnabled(false);
-                btnCalcular.setEnabled(true);
+                mostrarError("Entrada invalida o vacia");        
             }
-        } else {
-            mostrarError("Entrada invalida o vacia");
-        }
+        
 
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcularActionPerformed
-        // TODO add your handling code here:
+        VentanaResultados ventanaResultados = new VentanaResultados();
+        iniciarVentana(ventanaResultados);
+        dispose();
+        
+        
         
     }//GEN-LAST:event_btnCalcularActionPerformed
 
@@ -231,6 +246,7 @@ public class VentanaFormulario extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnCalcular;
+    private javax.swing.JButton btnMostrarResultados;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;

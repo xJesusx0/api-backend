@@ -71,6 +71,7 @@
                               <Component id="lblEstado" pref="151" max="32767" attributes="0"/>
                               <Component id="txtEntrada" max="32767" attributes="0"/>
                           </Group>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
@@ -78,9 +79,11 @@
                               <Component id="btnAgregar" max="32767" attributes="0"/>
                               <Component id="btnCalcular" pref="84" max="32767" attributes="0"/>
                           </Group>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="btnMostrarResultados" min="-2" pref="142" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -95,7 +98,10 @@
                           <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                           <Component id="txtEntrada" min="-2" pref="22" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="btnAgregar" min="-2" pref="23" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="btnAgregar" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
+                              <Component id="btnMostrarResultados" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="btnCalcular" min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -184,6 +190,12 @@
             </Component>
           </SubComponents>
         </Container>
+        <Component class="javax.swing.JButton" name="btnMostrarResultados">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Mostrar resultadoss"/>
+            <Property name="enabled" type="boolean" value="false"/>
+          </Properties>
+        </Component>
       </SubComponents>
     </Container>
     <Container class="javax.swing.JPanel" name="jPanel2">
