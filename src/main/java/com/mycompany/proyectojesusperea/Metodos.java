@@ -9,6 +9,10 @@ import javax.swing.*;
 
 public class Metodos {
     
+    public static boolean verificarVacio(String dato){
+        return (!dato.trim().isEmpty());
+    }
+    
     public static void iniciarVentana(JFrame ventana) {
         ventana.setLocationRelativeTo(null);
         ventana.setVisible(true);
@@ -58,7 +62,7 @@ public class Metodos {
             }
         }
     }
-        public static double inputDouble(String mensaje){
+    public static double inputDouble(String mensaje){
         while(true){
         String entrada = input(mensaje);
         
@@ -70,6 +74,32 @@ public class Metodos {
 
             }
         }
+    }
+    
+    public static double convertirDouble(String string){
+        if(verificarVacio(string)){
+            try {
+                return Double.parseDouble(string);
+                
+            } catch (NumberFormatException e) {
+                return -1;
+
+            }
+        } else {
+            return -1;
+        }
+
+    }
+    
+    public static String imprimirMatriz(double[][] matriz){
+       String men = "";
+        for (int i = 0; i < matriz.length; i++) {
+            for (int j = 0; j < matriz[i].length; j++) {
+                men += (matriz[i][j] + "\t"); // \t agrega una tabulación entre los elementos
+            }
+            men += "\n";
+        }
+        return men;
     }
     
 }
