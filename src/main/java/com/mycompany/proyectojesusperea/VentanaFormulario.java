@@ -25,6 +25,7 @@ public class VentanaFormulario extends javax.swing.JFrame {
         lblValorI = new javax.swing.JLabel();
         lblValorJ = new javax.swing.JLabel();
         btnMostrarResultados = new javax.swing.JButton();
+        btnSalir = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
 
@@ -86,14 +87,31 @@ public class VentanaFormulario extends javax.swing.JFrame {
 
         btnMostrarResultados.setText("Mostrar resultadoss");
         btnMostrarResultados.setEnabled(false);
+        btnMostrarResultados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMostrarResultadosActionPerformed(evt);
+            }
+        });
+
+        btnSalir.setBackground(new java.awt.Color(255, 0, 0));
+        btnSalir.setForeground(new java.awt.Color(255, 255, 255));
+        btnSalir.setText("X");
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(39, 39, 39)
@@ -113,10 +131,9 @@ public class VentanaFormulario extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
                         .addComponent(lblEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(14, 14, 14)
                         .addComponent(txtEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -125,7 +142,11 @@ public class VentanaFormulario extends javax.swing.JFrame {
                             .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnMostrarResultados))
                         .addGap(18, 18, 18)
-                        .addComponent(btnCalcular)))
+                        .addComponent(btnCalcular))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(37, Short.MAX_VALUE))
         );
 
@@ -200,13 +221,53 @@ public class VentanaFormulario extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcularActionPerformed
+        
+        for (int i = 0 ; i < cantidadMeses ; i++){
+            
+            double acumuladoVentas = 0;
+            double ventasDelMes[] = new double[cantidadTiendas];
+            for (int j = 0 ; j < cantidadTiendas ; j++){
+              ventasDelMes[j] = ventas[i][j];
+              acumuladoVentas += ventas[i][j];
+              ventasPorTienda[j] += ventas[i][j];
+            }
+            ventasPorMes[i] = acumuladoVentas;
+            ventaMasAltaPorMes[i] = obtenerMayor(ventasDelMes);
+            ventaMasBajaPorMes[i] = obtenerMenor(ventasDelMes);
+        }
+        
+        for(int j = 0 ; j < cantidadTiendas ; j++){
+            
+            double ventasTienda[] = new double[cantidadMeses];
+            for (int i = 0 ; i < cantidadMeses ; i++){
+                ventasTienda[i] = ventas[i][j];
+                
+            }
+            
+            ventaMasAltaPorTienda[j] = obtenerMayor(ventasTienda);
+            ventaMasBajaPorTienda[j] = obtenerMenor(ventasTienda);
+        }
+        JOptionPane.showMessageDialog(null, "Calculos realizados correctamente");
+        btnCalcular.setEnabled(false);
+        btnMostrarResultados.setEnabled(true);
+        
+    }//GEN-LAST:event_btnCalcularActionPerformed
+
+    private void btnMostrarResultadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarResultadosActionPerformed
+        // TODO add your handling code here:
         VentanaResultados ventanaResultados = new VentanaResultados();
         iniciarVentana(ventanaResultados);
         dispose();
-        
-        
-        
-    }//GEN-LAST:event_btnCalcularActionPerformed
+    }//GEN-LAST:event_btnMostrarResultadosActionPerformed
+
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        // TODO add your handling code here:
+        int Eleccion = JOptionPane.showConfirmDialog(null, "Esta seguro que esea salir?", "Confirmación", JOptionPane.YES_NO_OPTION);
+
+        if(Eleccion == JOptionPane.YES_OPTION){
+            System.exit(0);
+        }
+    }//GEN-LAST:event_btnSalirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -247,6 +308,7 @@ public class VentanaFormulario extends javax.swing.JFrame {
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnCalcular;
     private javax.swing.JButton btnMostrarResultados;
+    private javax.swing.JButton btnSalir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;

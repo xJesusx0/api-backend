@@ -102,4 +102,24 @@ public class Metodos {
         return men;
     }
     
+    public static double obtenerMayor(double[] vector){
+        double mayor = vector[0];
+        for(int i = 1; i < vector.length; i++){
+          if(vector[i] > mayor){
+            mayor = vector[i];
+          }
+        }
+        return mayor;  
+    }
+  
+    public static double obtenerMenor(double[] vector){
+        double menor = vector[0];
+        for(int i = 1; i < vector.length; i++){
+          if(vector[i] < menor){
+            menor = vector[i];
+          }
+        }
+        return menor;  
+   }
+    
 }

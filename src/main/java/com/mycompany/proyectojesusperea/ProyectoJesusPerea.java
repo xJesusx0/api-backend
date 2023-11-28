@@ -14,7 +14,15 @@ public class ProyectoJesusPerea {
     "SEPTIEMBRE", "OCTUBRE", "NOVIEMBRE", "DICIEMBRE"
     };
     public static String nombresTiendas[];
-
+    
+    public static double ventasPorMes[];
+    public static double ventasPorTienda[];
+        
+    public static double ventaMasAltaPorMes[];
+    public static double ventaMasBajaPorMes[];     
+        
+    public static double ventaMasAltaPorTienda[];
+    public static double ventaMasBajaPorTienda[];
     
     
     public static void main(String[] args) {
@@ -28,6 +36,15 @@ public class ProyectoJesusPerea {
         for(int i = 0 ; i < cantidadTiendas ; i++){
             nombresTiendas[i] = (input("Ingrese el nombre de la tienda " + (i+1))).toUpperCase();
         }
+        
+        ventasPorMes = new double[cantidadMeses];
+        ventasPorTienda = new double[cantidadTiendas];
+        
+        ventaMasAltaPorMes = new double[cantidadMeses];
+        ventaMasBajaPorMes = new double[cantidadMeses];
+        
+        ventaMasAltaPorTienda = new double[cantidadTiendas];
+        ventaMasBajaPorTienda = new double[cantidadTiendas];
         
         VentanaLogin ventanaLogin = new VentanaLogin();
         iniciarVentana(ventanaLogin);
