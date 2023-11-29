@@ -91,13 +91,14 @@ public class Metodos {
 
     }
     
-    public static String imprimirMatriz(double[][] matriz){
+    public static String imprimirMatriz(double[][] matriz,String[] filas, String[] columnas){
        String men = "";
+       men += (imprimirVector(columnas) + "\n");
         for (int i = 0; i < matriz.length; i++) {
             for (int j = 0; j < matriz[i].length; j++) {
-                men += (matriz[i][j] + "\t"); // \t agrega una tabulación entre los elementos
+                men += (matriz[i][j] + "\t");
             }
-            men += "\n";
+            men += (" "+ filas[i]+"\n");
         }
         return men;
     }
@@ -122,4 +123,36 @@ public class Metodos {
         return menor;  
    }
     
+    public static String imprimirVector(String[] vector){
+        String resultado = "";
+        for(int i = 0 ; i < vector.length ; i++){
+            resultado += (vector[i] + "\t");
+        }
+        return resultado;
+    }
+    
+    public static String imprimirVectorNumerico(double[] vector){
+        String resultado = "";
+        for(int i = 0 ; i < vector.length ; i++){
+            resultado += (vector[i] + "\t");
+        }
+        return resultado;
+    }
+    
+    public static String leerArchivo(String ruta) throws FileNotFoundException, IOException{
+        String contenido = "";
+        
+        BufferedReader file = new BufferedReader(new FileReader(ruta));
+        String line = file.readLine();
+        
+        
+        while(line != null){
+            contenido += (line + "\n");
+            line = file.readLine();
+            
+        }
+        
+        
+        return contenido;
+    }
 }

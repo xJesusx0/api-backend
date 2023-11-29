@@ -1,0 +1,43 @@
+============
+Nombres de las tiendas
+ADIDAS	NIKE	
+------------
+Venta mas alta por tienda
+500.0	600.0	
+Venta mas baja por tienda
+100.0	200.0	
+------------
+Meses
+ENERO	FEBRERO	MARZO	
+------------
+Venta mas alta por mes
+200.0	400.0	600.0	
+Venta mas baja por mes
+100.0	300.0	500.0	
+Matriz: 
+ADIDAS	NIKE	
+100.0	200.0	 ENERO
+300.0	400.0	 FEBRERO
+500.0	600.0	 MARZO
+============
+Nombres de las tiendas
+REEBOK	PUMA	
+------------
+Venta mas alta por tienda
+400.0	300.0	
+Venta mas baja por tienda
+200.0	100.0	
+------------
+Meses
+ENERO	FEBRERO	
+------------
+Venta mas alta por mes
+400.0	200.0	
+Venta mas baja por mes
+300.0	100.0	
+Matriz: 
+REEBOK	PUMA	
+400.0	300.0	 ENERO
+200.0	100.0	 FEBRERO
+
+

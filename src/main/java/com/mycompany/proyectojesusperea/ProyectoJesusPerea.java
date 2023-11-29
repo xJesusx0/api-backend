@@ -5,6 +5,10 @@ import static com.mycompany.proyectojesusperea.Metodos.*;
 
 public class ProyectoJesusPerea {
     
+    public static String separador1 = "============";
+    public static String separador2 = "------------";
+    public static String ultimoCalculo;
+    
     public static int cantidadTiendas;
     public static int cantidadMeses;
     public static double[][] ventas;
@@ -13,6 +17,9 @@ public class ProyectoJesusPerea {
     "MAYO", "JUNIO","JULIO", "AGOSTO", 
     "SEPTIEMBRE", "OCTUBRE", "NOVIEMBRE", "DICIEMBRE"
     };
+    
+    public static String[] mesesUtilizados;
+    
     public static String nombresTiendas[];
     
     public static double ventasPorMes[];
@@ -29,6 +36,12 @@ public class ProyectoJesusPerea {
         
         cantidadMeses = inputInt("Ingrese la cantidad de meses");
         cantidadTiendas = inputInt("Ingrese la cantidad de tiendas");
+        
+        mesesUtilizados = new String[cantidadMeses];
+        
+        for (int i = 0 ; i < cantidadMeses ; i++){
+            mesesUtilizados[i] = meses[i];
+        }
         
         nombresTiendas = new String[cantidadTiendas];
         ventas = new double[cantidadMeses][cantidadTiendas];

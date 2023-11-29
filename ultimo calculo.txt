@@ -1,0 +1,21 @@
+============
+Nombres de las tiendas
+ADIDAS	NIKE	
+------------
+Venta mas alta por tienda
+3.0	4.0	
+Venta mas baja por tienda
+1.0	2.0	
+------------
+Meses
+ENERO	FEBRERO	
+------------
+Venta mas alta por mes
+2.0	4.0	
+Venta mas baja por mes
+1.0	3.0	
+Matriz: 
+ADIDAS	NIKE	
+1.0	2.0	 ENERO
+3.0	4.0	 FEBRERO
+
