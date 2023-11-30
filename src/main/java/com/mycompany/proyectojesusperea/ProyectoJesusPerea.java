@@ -8,6 +8,7 @@ public class ProyectoJesusPerea {
     public static String separador1 = "============";
     public static String separador2 = "------------";
     public static String ultimoCalculo;
+    public static boolean guardado = false;
     
     public static int cantidadTiendas;
     public static int cantidadMeses;

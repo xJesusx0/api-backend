@@ -7,7 +7,8 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import java.io.*;
 import org.json.*;
-
+import org.json.simple.JSONValue;
+//import com.fasterxml.jackson.core;
 
 public class VentanaResultados extends javax.swing.JFrame {
 
@@ -202,11 +203,16 @@ public class VentanaResultados extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        int Eleccion = JOptionPane.showConfirmDialog(null, "Desea salir sin guardar?", "Confirmación", JOptionPane.YES_NO_OPTION);
-
-        if(Eleccion == JOptionPane.YES_OPTION){
+        if(guardado){
             System.exit(0);
+        } else {
+            int Eleccion = JOptionPane.showConfirmDialog(null, "Desea salir sin guardar?", "Confirmación", JOptionPane.YES_NO_OPTION);
+
+            if(Eleccion == JOptionPane.YES_OPTION){
+                System.exit(0);
+            }
         }
+        
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
@@ -216,6 +222,7 @@ public class VentanaResultados extends javax.swing.JFrame {
                 PrintWriter file = new PrintWriter(new FileWriter("historial.txt",true));
                 file.println(ultimoCalculo);
                 file.close();
+                guardado = true;
                 btnGuardar.setEnabled(false);
             } catch (IOException ex) {
                 Logger.getLogger(VentanaResultados.class.getName()).log(Level.SEVERE, null, ex);
@@ -255,14 +262,14 @@ public class VentanaResultados extends javax.swing.JFrame {
                 lista.put(entrada);
             }
         }  
-        //datos.put(lista);
         try {
-            PrintWriter file = new PrintWriter(new FileWriter("datos.json"));
-            file.write(lista.toString());
-            file.flush();
+            FileWriter file = new FileWriter("datos.json");
+            String jsonString = JSONValue.toJSONString(lista);
+            file.write(jsonString);
+            file.close();
         } catch (IOException ex) {
             Logger.getLogger(VentanaResultados.class.getName()).log(Level.SEVERE, null, ex);
-        }   
+        }
         
         try {
             String contenido = leerArchivo("datos.json");
